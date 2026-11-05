@@ -1,0 +1,8 @@
+{
+  "src/levels/level01/Level01MapData.ts": "9e4a2bfbd0fb5f0c6b6980680e785eeee96e37f2a7f09dba698225a630c5094b",
+  "src/characters/fox/PhysicsConfig.ts": "b144bb69901bd0c30b07238ce4bcabb043f5f2d16e85a926a0c698b1d3196521",
+  "src/characters/fox/CharacterConfig.ts": "8e975aef27c73d50535a08127e1bfeb31b9b0bf001f408accba10dfddeebe482",
+  "src/characters/fox/PlayerController.ts": "ced8eec57903d5c07a333fba3180f092572d606cda1c418fe386add9cf753c49",
+  "src/characters/fox/FoxRig.ts": "cca8d0dc23a7a202336159837d43d8aa1bad4c98352ef40d1ec923bfa7e97037",
+  "src/levels/shared/CameraController.ts": "5dd5df78f083b0eccf1786fda9f47ff75192abe32c04d3e15031e25e8287806c"
+}

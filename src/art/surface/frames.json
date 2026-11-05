@@ -1,0 +1,56 @@
+{
+  "surface-earth-0": {
+    "x": 2,
+    "y": 2,
+    "width": 256,
+    "height": 512
+  },
+  "surface-rock-0": {
+    "x": 2,
+    "y": 518,
+    "width": 256,
+    "height": 512
+  },
+  "surface-earth-1": {
+    "x": 262,
+    "y": 2,
+    "width": 256,
+    "height": 512
+  },
+  "surface-rock-1": {
+    "x": 262,
+    "y": 518,
+    "width": 256,
+    "height": 512
+  },
+  "surface-earth-2": {
+    "x": 522,
+    "y": 2,
+    "width": 256,
+    "height": 512
+  },
+  "surface-rock-2": {
+    "x": 522,
+    "y": 518,
+    "width": 256,
+    "height": 512
+  },
+  "surface-deep-0": {
+    "x": 2,
+    "y": 1034,
+    "width": 256,
+    "height": 256
+  },
+  "surface-deep-1": {
+    "x": 262,
+    "y": 1034,
+    "width": 256,
+    "height": 256
+  },
+  "surface-deep-2": {
+    "x": 522,
+    "y": 1034,
+    "width": 256,
+    "height": 256
+  }
+}

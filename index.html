@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#172f2b" />
+    <meta name="description" content="苔光之森：保留原创矢量插画的小狐狸森林漫步，使用 A/D 移动，Space、W 或向上键跳跃，探索森林高台。" />
+    <title>苔光之森 · Mosslight — 小狐狸的森林漫步</title>
+  </head>
+  <body data-view="game" data-debug="false">
+    <main class="studio">
+      <header class="masthead">
+        <div class="identity">
+          <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M20 34C6 29 8 11 28 5C34 20 30 31 20 34Z" fill="#a9c18d"/><path d="M17 35Q17 20 27 10M19 23L13 17M21 20L28 19" stroke="#2e5142" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <div><h1>苔光之森 <span>MOSSLIGHT</span></h1><p>一束微光，一段尚未开始的冒险。</p></div>
+        </div>
+        <div class="edition"><a href="/level01/" style="color:inherit;text-decoration:none">第一章 · 进入晨光林地 ↗</a><span class="edition-dot"></span>ART STUDY <span class="edition-number">01 / 森林初见</span></div>
+      </header>
+      <section class="scene-frame" aria-label="苔光之森游戏场景">
+        <div id="game" tabindex="0" role="application" aria-label="苔光之森，A、D 或左右方向键跑步；Shift 加方向键走路；Space、W 或向上键跳跃。"></div>
+        <div id="loading" role="status"><span class="loading-leaf"></span>正在铺开森林画卷…</div>
+        <div class="scene-caption" aria-hidden="true"><span class="caption-line"></span>WHISPERING WOODS <span>晨光林地</span></div>
+        <nav class="presentation-tools" aria-label="场景展示设置">
+          <button id="view-mode" class="tool-button" type="button" aria-pressed="false">美术展示</button>
+          <button id="debug-toggle" class="tool-button" type="button" aria-pressed="false" aria-controls="debug-panel" disabled>开发调试</button>
+          <button id="animation-toggle" class="tool-button" type="button" aria-pressed="false" aria-controls="animation-panel" disabled>动画调试</button>
+        </nav>
+        <aside id="animation-panel" aria-label="角色动画调试" hidden>
+          <div class="debug-heading"><strong>小狐狸 · 动画</strong><button id="close-animation" type="button" aria-label="关闭动画调试">×</button></div>
+          <button id="open-motion-review" type="button">全身动作预览 / 四姿势对比</button>
+          <label>慢动作档位<select id="motion-speed-preset" aria-label="慢动作档位"><option value="1">1×</option><option value="0.5">0.5×</option><option value="0.25">0.25×</option></select></label>
+          <section id="motion-tuning" aria-label="柔性动画调试"></section>
+          <div class="animation-readout"><span>动作 <output id="animation-state">IDLE</output></span><span>动作阶段 <output id="animation-phase">IDLE</output></span><span>播放来源 <output id="playback-source">实际物理</output></span><span>姿态落地力度 <output id="landing-impact">0 px/s</output></span><span>速度 <output id="movement-speed">0.0 px/s</output></span><span>位置 <output id="character-position"></output></span><span>地面接触 <output id="grounded-state">是</output></span><span>垂直速度 <output id="vertical-speed">0.0 px/s</output></span><span>土狼时间 <output id="coyote-state">就绪</output></span><span>跳跃缓冲 <output id="buffer-state">—</output></span><span>特殊起跳 <output id="jump-assists">0 / 0</output></span><span>更新频率 <output id="animation-fps">—</output></span><span>角色耗时 均值/P95 <output id="animation-cost">—</output></span><span>JS 堆（可用时） <output id="animation-heap">—</output></span><span>稳态支撑滑移峰值 <output id="contact-error">0.00 px</output></span></div>
+          <label>动作预览<select id="animation-mode" aria-label="动作预览"><option value="AUTO">自动 · 键盘移动</option><option value="IDLE">Idle · 原地待机</option><option value="WALK">Walk · 原地走路</option><option value="RUN">Run · 原地跑步</option><option value="JUMP_CYCLE">完整跳跃 · 虚拟预览</option><option value="POSE">单独 Pose</option></select></label>
+          <label>动画速度 <output id="animation-rate-value">1.00×</output><input id="animation-rate" aria-label="动画速度" type="range" min="0.2" max="1.5" step="0.05" value="1"></label>
+          <p class="debug-note">慢放同步物理时钟；虚拟预览不改写物理位置。</p>
+          <label><input id="animation-paused" type="checkbox">暂停 / 定格检查</label>
+          <label><input id="rig-joints" type="checkbox">显示关节与锚点</label>
+          <label>关键姿态<select id="pose-preview" aria-label="关键姿态"></select></label>
+          <label>骨骼关节<select id="bone-select" aria-label="骨骼关节"></select></label>
+          <label>局部角度 <output id="joint-angle-value">0°</output><input id="joint-angle" aria-label="关节局部角度" type="range" min="-100" max="30" step="1" value="0"></label>
+          <p class="debug-note">选中关节原稿坐标 <output id="joint-position"></output></p>
+          <button id="clear-joints" type="button">清除手动调角</button>
+          <label>姿态混合 <output id="blend-time-value">70 ms</output><input id="blend-time" aria-label="姿态混合时长" type="range" min="0.02" max="0.25" step="0.01" value="0.07"></label>
+          <label><input id="rig-bind" type="checkbox">暂停在原始绑定姿态</label>
+          <label><input id="rig-reference" type="checkbox">显示原始整张 SVG 对照</label>
+          <label>重力<input id="physics-gravity" aria-label="重力" type="number" min="800" max="2400" step="50" value="1500"></label>
+          <label>起跳速度<input id="physics-jump" aria-label="起跳速度" type="number" min="450" max="760" step="10" value="600"></label>
+          <p class="debug-note">长按理论高度 <output id="jump-height">120</output> px · 松键降低高度</p>
+          <button id="reset-character" type="button">恢复出生点 / 自动</button>
+          <p class="debug-note">虚拟预览暂停推进物理；关闭面板恢复自动与默认混合。</p>
+        </aside>
+        <aside id="motion-review" class="motion-review" aria-label="全身动作预览" hidden data-layout="overview">
+          <header><div><strong>全身动作台</strong><span id="review-phase">四姿势并排比较</span></div><button id="close-motion-review" type="button" aria-label="关闭全身动作预览">返回游戏</button></header>
+          <nav aria-label="动作预览控制"><button id="review-overview" type="button">四姿势并排</button><select id="review-travel" aria-label="跳跃类型"><option value="standing">原地跳跃</option><option value="forward">向前跳跃</option></select><button id="review-play" type="button">播放一次完整跳跃</button><button id="review-compare" type="button">主动作 / 柔性对比</button><label><input id="review-secondary" type="checkbox" checked>柔性跟随</label><button id="review-pause" type="button">暂停</button><label>速度<select id="review-rate" aria-label="动作台播放速度"><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option></select></label><label><input id="review-joints" type="checkbox">骨骼 / 关节</label></nav>
+          <div id="review-cards" class="review-cards"></div>
+          <div id="review-coordinates" class="review-coordinates" aria-label="关键关节位置"></div>
+          <footer>腰部、胸腔、颈、肩、膝：原稿坐标与全局角度 · 动作台使用独立角色，游戏物理暂停推进。</footer>
+        </aside>
+        <div class="controls-hint" aria-hidden="true">A / D <span>或</span> ← / → <span>跑步</span> Shift <span>+ 方向走路</span> Space / W / ↑ <span>跳跃</span></div>
+        <aside id="debug-panel" aria-label="场景开发调试" hidden>
+          <div class="debug-heading"><strong>场景调试</strong><button id="close-debug" type="button" aria-label="关闭开发调试">×</button></div>
+          <label class="collision-switch"><input type="checkbox" id="show-collisions" checked>显示碰撞边界</label>
+          <p class="debug-legend"><span>青色：可站立顶部</span><span>金色：实体边界</span></p>
+          <fieldset><legend>独立图层 <small>预留视差系数</small></legend><div id="layer-controls"></div></fieldset>
+          <fieldset class="terrain-parts"><legend>地形美术</legend><label><input type="checkbox" data-terrain-part="surface" checked>地表草面</label><label><input type="checkbox" data-terrain-part="side" checked>土壤与岩壁</label></fieldset>
+          <fieldset><legend>右侧平台</legend><div class="platform-fields">
+            <label>位置 X<input id="platform-x" aria-label="平台 X" type="number" min="0" max="1100" step="0.1" data-platform-field="x"></label>
+            <label>位置 Y<input id="platform-y" aria-label="平台 Y" type="number" min="200" max="600" step="0.1" data-platform-field="y"></label>
+            <label>宽度<input id="platform-width" aria-label="平台宽度" type="number" min="140" max="500" step="0.1" data-platform-field="width"></label>
+            <label>高度<input id="platform-height" aria-label="平台高度" type="number" min="70" max="240" step="0.1" data-platform-field="height"></label>
+          </div><button id="reset-platform" type="button">还原平台</button></fieldset>
+          <p class="debug-note">青线为可站立顶部；白色轮廓为角色碰撞体。</p>
+        </aside>
+        <button id="fullscreen" type="button" aria-label="全屏欣赏场景" title="全屏欣赏"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 4H4V8M16 4H20V8M20 16V20H16M8 20H4V16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+      </section>
+      <footer class="colophon">
+        <div><span class="foot-label">第四阶段 D</span><span class="foot-divider"></span>全身发力与落地卸力<span class="still-note"> · Space / W / ↑ 跳跃</span></div>
+        <div class="materials"><span class="swatches" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>原创矢量绘制</span><span class="foot-divider"></span><span>1280 × 720</span></div>
+      </footer>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

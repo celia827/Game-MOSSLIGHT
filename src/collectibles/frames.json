@@ -1,0 +1,20 @@
+{
+  "dew-pearl": {
+    "x": 2,
+    "y": 2,
+    "width": 64,
+    "height": 88
+  },
+  "dew-halo": {
+    "x": 70,
+    "y": 2,
+    "width": 96,
+    "height": 96
+  },
+  "dew-spark": {
+    "x": 170,
+    "y": 2,
+    "width": 24,
+    "height": 24
+  }
+}

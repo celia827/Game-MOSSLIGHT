@@ -1,0 +1,20 @@
+{
+  "curtain-panel": {
+    "x": 2,
+    "y": 2,
+    "width": 160,
+    "height": 300
+  },
+  "curtain-crown": {
+    "x": 166,
+    "y": 2,
+    "width": 320,
+    "height": 92
+  },
+  "curtain-mist": {
+    "x": 166,
+    "y": 98,
+    "width": 192,
+    "height": 192
+  }
+}

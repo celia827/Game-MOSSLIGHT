@@ -1,0 +1,1 @@
+{"browser": {"browserName": "chromium", "userDataDir": "/Users/mazhengzheng/Downloads/11-demo/node_modules/.cache/e11-test-profile", "launchOptions": {"channel": "chrome", "headless": true}, "contextOptions": {"viewport": {"width": 1440, "height": 1000}, "deviceScaleFactor": 1}}, "outputDir": "/Users/mazhengzheng/Downloads/11-demo/output/playwright/e11-test"}

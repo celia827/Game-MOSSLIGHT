@@ -1,0 +1,51 @@
+{
+  "branch-short": {
+    "x": 2,
+    "y": 2,
+    "width": 140,
+    "height": 164,
+    "tread": 64
+  },
+  "branch-medium": {
+    "x": 146,
+    "y": 2,
+    "width": 220,
+    "height": 164,
+    "tread": 64
+  },
+  "branch-rest": {
+    "x": 370,
+    "y": 2,
+    "width": 280,
+    "height": 164,
+    "tread": 64
+  },
+  "branch-left": {
+    "x": 2,
+    "y": 170,
+    "width": 140,
+    "height": 164,
+    "tread": 64
+  },
+  "branch-end": {
+    "x": 146,
+    "y": 170,
+    "width": 140,
+    "height": 164,
+    "tread": 64
+  },
+  "branch-joint": {
+    "x": 290,
+    "y": 170,
+    "width": 220,
+    "height": 184,
+    "tread": 64
+  },
+  "branch-support": {
+    "x": 654,
+    "y": 2,
+    "width": 160,
+    "height": 220,
+    "tread": null
+  }
+}

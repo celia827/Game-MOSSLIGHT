@@ -1,0 +1,12 @@
+{
+  "src/levels/level01/Level01MapData.ts": "9e4a2bfbd0fb5f0c6b6980680e785eeee96e37f2a7f09dba698225a630c5094b",
+  "src/levels/shared/MapCollision.ts": "4e5ab0ce37ed6cf4c3209afd53b39db6d37eb4d2db2303ab82eea99b26369ff3",
+  "src/world/terrain/geometry.ts": "aefce0e691cb8313e941adb85fc7cb32e5f09f60703cfc5057c6327b898b1bac",
+  "src/levels/shared/CameraController.ts": "5dd5df78f083b0eccf1786fda9f47ff75192abe32c04d3e15031e25e8287806c",
+  "src/characters/fox/PhysicsConfig.ts": "b144bb69901bd0c30b07238ce4bcabb043f5f2d16e85a926a0c698b1d3196521",
+  "src/characters/fox/CharacterConfig.ts": "8e975aef27c73d50535a08127e1bfeb31b9b0bf001f408accba10dfddeebe482",
+  "src/characters/fox/PlayerController.ts": "ced8eec57903d5c07a333fba3180f092572d606cda1c418fe386add9cf753c49",
+  "src/characters/fox/FoxRig.ts": "cca8d0dc23a7a202336159837d43d8aa1bad4c98352ef40d1ec923bfa7e97037",
+  "src/characters/fox/FoxAnimationController.ts": "30f14633f972b6f8fc43fb9d5e58b005225317206e1452e58003842e61ad292b",
+  "src/scenes/Level01Scene.ts": "f7c73f00e9b7cfd6dba3f55d96f827fed4893809c02f1f9d19d096864fe115db"
+}

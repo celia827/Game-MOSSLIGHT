@@ -1,0 +1,50 @@
+{
+  "flower-stem": {
+    "x": 2,
+    "y": 2,
+    "width": 192,
+    "height": 272
+  },
+  "flower-petals": {
+    "x": 198,
+    "y": 2,
+    "width": 192,
+    "height": 272
+  },
+  "flower-glow": {
+    "x": 394,
+    "y": 2,
+    "width": 256,
+    "height": 256
+  },
+  "flower-core": {
+    "x": 2,
+    "y": 278,
+    "width": 64,
+    "height": 64
+  },
+  "moss-guide": {
+    "x": 70,
+    "y": 278,
+    "width": 64,
+    "height": 64
+  },
+  "platform-halo": {
+    "x": 138,
+    "y": 278,
+    "width": 192,
+    "height": 64
+  },
+  "awaken-grass": {
+    "x": 334,
+    "y": 278,
+    "width": 72,
+    "height": 64
+  },
+  "moss-spark": {
+    "x": 410,
+    "y": 278,
+    "width": 32,
+    "height": 32
+  }
+}

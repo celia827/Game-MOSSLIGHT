@@ -1,0 +1,44 @@
+{
+  "cave-wall-0": {
+    "x": 2,
+    "y": 2,
+    "width": 512,
+    "height": 320
+  },
+  "cave-wall-1": {
+    "x": 518,
+    "y": 2,
+    "width": 512,
+    "height": 320
+  },
+  "cave-roof": {
+    "x": 2,
+    "y": 326,
+    "width": 512,
+    "height": 180
+  },
+  "root-arch": {
+    "x": 518,
+    "y": 326,
+    "width": 512,
+    "height": 320
+  },
+  "root-tendrils": {
+    "x": 518,
+    "y": 650,
+    "width": 160,
+    "height": 100
+  },
+  "moss-fungi": {
+    "x": 682,
+    "y": 650,
+    "width": 160,
+    "height": 100
+  },
+  "root-glow": {
+    "x": 2,
+    "y": 510,
+    "width": 512,
+    "height": 320
+  }
+}

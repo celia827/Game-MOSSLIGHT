@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.DS_Store
+*.local
+artifacts/
+/output/
+/tmp/
+/.pw-sockets/
+**/__pycache__/
+*.pyc
+/docs/completion-e3/evidence/*
+!/docs/completion-e3/evidence/.gitkeep
+/docs/player-f2a/evidence/*
+!/docs/player-f2a/evidence/.gitkeep
+/docs/player-f2a/output/

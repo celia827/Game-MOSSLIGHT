@@ -1,0 +1,6 @@
+import {Level01MapData as map} from '../../src/levels/level01/Level01MapData.ts';
+import {writeFileSync,readFileSync} from 'node:fs';import {createHash} from 'node:crypto';
+const modules=map.modules.filter(m=>['A','B','E'].includes(m.region));
+writeFileSync('docs/art-b2a/plan.json',JSON.stringify({world:{width:map.width,height:map.height},modules:modules.map(m=>({id:m.id,region:m.region,x:m.x,y:m.y,width:m.width,height:m.height,profile:m.profile,oneWay:m.oneWay})),openings:modules.slice(1).flatMap((m,i)=>{const prev=modules[i];return m.x>prev.x+prev.width?[{from:prev.id,to:m.id,x:prev.x+prev.width,width:m.x-prev.x-prev.width}]:[]})},null,2));
+const files=['src/levels/level01/Level01MapData.ts','src/levels/shared/MapCollision.ts','src/world/terrain/geometry.ts','src/levels/shared/CameraController.ts','src/characters/fox/PhysicsConfig.ts','src/characters/fox/CharacterConfig.ts','src/characters/fox/PlayerController.ts','src/characters/fox/FoxRig.ts','src/characters/fox/FoxAnimationController.ts','src/scenes/Level01Scene.ts'];
+writeFileSync('docs/art-b2a/protected-before.json',JSON.stringify(Object.fromEntries(files.map(f=>[f,createHash('sha256').update(readFileSync(f)).digest('hex')])),null,2));

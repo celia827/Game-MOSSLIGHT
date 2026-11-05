@@ -1,0 +1,17 @@
+{
+  "name": "mosslight-forest-art-preview",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "art:generate": "node scripts/generate-art.mjs && npm run art:rig",
+    "art:rig": "python3 scripts/export-fox-rig.py",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/*.test.ts",
+    "build": "npm run typecheck && vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": { "phaser": "^3.90.0" },
+  "devDependencies": { "typescript": "^5.9.3", "vite": "^7.1.12" }
+}

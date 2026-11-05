@@ -1,0 +1,291 @@
+{
+  "schema": "mosslight.gameplay-design/1",
+  "revision": "F.2-C1.1-candidate-1",
+  "status": "FUTURE_IMPLEMENTATION_REQUIRED",
+  "playerCombat": {
+    "action": "轻枝拂击（手臂横扫，不更换外观/武器）",
+    "inputCandidate": "K（J保留手记；同帧E/菜单优先，暂停丢弃攻击）",
+    "finalInputCandidate": "K",
+    "groundOnly": true,
+    "airAttack": false,
+    "combo": false,
+    "cooldownFromStart": 0.55,
+    "windup": 0.12,
+    "active": 0.1,
+    "recovery": 0.28,
+    "damage": 1,
+    "health": 3,
+    "invulnerableSeconds": 1.2,
+    "hitStunSeconds": 0.18,
+    "kinematicKnockback": false,
+    "hitboxFacingRight": {
+      "xMinOffset": 14,
+      "xMaxOffset": 78,
+      "yMinOffset": -92,
+      "yMaxOffset": -12
+    },
+    "hitPolicy": "one target hit per attack token; facing captured at start; swept rect vs hurtbox, terrain/vertical guard; no proximity-only damage",
+    "movement": "normal motor continues; no speed/gravity overrides; jump/turn cancels attack and closes hitbox, cooldown persists; air cannot start attack; land resumes AUTO",
+    "hurtPriority": "KO > hurt > airborne > attack upper-body overlay > locomotion",
+    "animation": "future upper-body attack/hurt pose extension on existing Fox bones; feet/tail locomotion retain V1 driver"
+  },
+  "enemyType": {
+    "id": "moss-cap",
+    "name": "苔帽菇团",
+    "appearance": "矮圆苔帽、两片叶足、琥珀点眼；原创轮廓，非现有素材/未产出美术",
+    "body": {
+      "halfWidth": 20,
+      "height": 58
+    },
+    "health": 2,
+    "damage": 1,
+    "patrolSpeed": 22,
+    "chaseSpeed": 42,
+    "detectHorizontal": 150,
+    "sameSurfaceRequired": true,
+    "attackReach": 42,
+    "attackTriggerCenterDistance": 68,
+    "hitboxFacingRight": {
+      "xMinOffset": 20,
+      "xMaxOffset": 62,
+      "yMinOffset": -50,
+      "yMaxOffset": -4
+    },
+    "windup": 0.65,
+    "active": 0.12,
+    "recovery": 0.9,
+    "hurtStun": 0.3,
+    "contactDamage": false,
+    "edgeClearance": 60,
+    "jump": false,
+    "states": [
+      "IDLE",
+      "PATROL",
+      "ALERT",
+      "CHASE",
+      "WINDUP",
+      "STRIKE",
+      "RECOVER",
+      "HURT",
+      "DEFEATED",
+      "RETURN"
+    ],
+    "leash": "never leave assigned support/interval or follow onto steps/lift; target airborne keeps telegraph, no anti-air snap; cancel pending strike if target centre leaves encounter arena",
+    "respawn": "defeated stays absent for current journey and ordinary respawn; R/new journey resets; alive enemy resets position/HP under KO fade cover or safe out-of-view disengage; never pop in on-screen"
+  },
+  "tutorial": {
+    "id": "attack-learning",
+    "x": 270,
+    "y": 900,
+    "target": {
+      "x": 310,
+      "y": 900,
+      "halfWidth": 18,
+      "height": 64
+    },
+    "playerStandX": [
+      180,
+      270
+    ],
+    "support": "entry",
+    "danger": false,
+    "mandatory": false,
+    "feedback": "K一次拂击使枯叶练习簇散开并回应光点；不掉生命、不挡路",
+    "requiresNew": "non-enemy training target + input hint/feedback"
+  },
+  "encounters": [
+    {
+      "id": "E1-first",
+      "enemyType": "moss-cap",
+      "spawn": {
+        "x": 1040,
+        "y": 900
+      },
+      "support": "west-deck",
+      "arenaX": [
+        900,
+        1160
+      ],
+      "patrolX": [
+        1000,
+        1080
+      ],
+      "leashX": [
+        960,
+        1120
+      ],
+      "retreat": [
+        "向西至870/CP1外侧安全地表",
+        "向上进入crown-up-1，敌人不追层",
+        "向东跳过/经过，非锁门"
+      ],
+      "mustDefeat": false,
+      "dropRisk": "距root缺口1200最近追击体边界1140，留60；不得再向东追",
+      "safeResetX": 1040
+    },
+    {
+      "id": "E2-optional",
+      "enemyType": "moss-cap",
+      "spawn": {
+        "x": 1640,
+        "y": 900
+      },
+      "support": "return-bridge",
+      "arenaX": [
+        1510,
+        1780
+      ],
+      "patrolX": [
+        1580,
+        1680
+      ],
+      "leashX": [
+        1540,
+        1730
+      ],
+      "retreat": [
+        "向西回sunlit-bridge",
+        "向东至1820安全段，敌不追入升降台候台区",
+        "用树冠/地下绕行整段"
+      ],
+      "mustDefeat": false,
+      "dropRisk": "连续地表，无战斗区内缺口；追击体右缘1750与升降台1850隔100",
+      "safeResetX": 1640
+    }
+  ],
+  "puzzle": {
+    "id": "root-leaf-bridge",
+    "kind": "pressure-pad latch unfolds existing one-way root bridge",
+    "pads": [
+      {
+        "id": "west-pad",
+        "x": 1600,
+        "y": 1140,
+        "width": 80,
+        "support": "cave-landing"
+      },
+      {
+        "id": "east-pad",
+        "x": 2240,
+        "y": 1200,
+        "width": 80,
+        "support": "cave-east"
+      }
+    ],
+    "requiresGroundedSeconds": 0.35,
+    "animationSeconds": 1.0,
+    "surfaceId": "cave-shortcut-east",
+    "surfaceBounds": {
+      "x": 1900,
+      "y": 1200,
+      "width": 300,
+      "height": 24
+    },
+    "states": [
+      "FOLDED",
+      "CHARGING",
+      "UNFURLING",
+      "OPEN"
+    ],
+    "transitions": [
+      [
+        "FOLDED",
+        "grounded on either pad",
+        "CHARGING"
+      ],
+      [
+        "CHARGING",
+        "step off before0.35s",
+        "FOLDED"
+      ],
+      [
+        "CHARGING",
+        "continuous0.35s",
+        "UNFURLING"
+      ],
+      [
+        "UNFURLING",
+        "1.0s animation, safe surface enable",
+        "OPEN"
+      ],
+      [
+        "OPEN",
+        "ordinary respawn/backtrack",
+        "OPEN"
+      ],
+      [
+        "OPEN",
+        "R/new journey",
+        "FOLDED"
+      ]
+    ],
+    "result": "adds real traversable upper shortcut surface; folded removes it, lower root-room/ramp loop remains passable",
+    "reveal": "leaf-shaped pad, roots point to missing bridge, amber→green charge, roots grow, distinct stable tread",
+    "safety": "enable one-way surface only when no supported body is crossed; if occupied underside wait until clear, keep lower route; once open no timed closure",
+    "reverse": "east pad opens same shared latch; no key or enemy defeat; pads never blocked by enemies",
+    "progress": "ordinary respawn preserves latch + dew; R resets; cross-session save version policy explicit in migration"
+  },
+  "trap": {
+    "id": "valley-breath-thorns",
+    "type": "small stationary timed thorn patch",
+    "rect": {
+      "x": 3310,
+      "y": 882,
+      "width": 32,
+      "height": 18
+    },
+    "support": "gate-approach",
+    "layerGuard": "only current/last support gate-approach with foot<=912; lower recovery actors excluded; first landing from below restarts3s quiet before any damage",
+    "westWaitCenterX": [
+      3244,
+      3286
+    ],
+    "eastWaitCenterX": [
+      3366,
+      3416
+    ],
+    "quietSeconds": 3.0,
+    "warningSeconds": 1.0,
+    "activeSeconds": 0.6,
+    "damage": 1,
+    "hurtInvulnerableSeconds": 1.2,
+    "firstEntry": "start quiet when player stably enters either waiting zone; never activate on initial off-screen approach",
+    "telegraph": "visible closed bud throughout; 1s amber pulsing tips + optional rustle then red thorns; shape and pulse distinguish without sound/color alone",
+    "avoid": [
+      "wait until closed then walk over",
+      "single jump over32px patch; no pit underneath"
+    ],
+    "hurt": "no physical push, 0.18s feedback, shared iFrames; damage at most once per iFrame",
+    "KO": "at zero HP enqueue existing respawn API after future damage adapter; CP2 if recorded, else CP1/spawn; restore3HP and start trap quiet",
+    "checkpoint": "CP2(2730,900) before jumps/trap; no enemy or hazard overlaps respawn; reset does not delete dew/puzzle latch/defeated enemy progress",
+    "clock": "pause/hidden/completion freezes; re-entry after KO starts quiet; no damage in warning/closed; no collision wall/spikes blocking passage"
+  },
+  "progression": {
+    "mandatoryCombat": false,
+    "mandatoryPuzzle": false,
+    "mandatoryCollectibles": false,
+    "mainChallenge": "two widened/gap30 platforms + telegraphed thorn crossing, can wait safely",
+    "goal": "unchanged E at3630,900, 0/1/2 dew completion",
+    "normalRespawn": "full3HP, preserve dew/bridge/enemy defeat session; alive enemies leash-reset safely; trap quiet; no on-screen pop-in",
+    "fullReset": "R/new journey restores enemies, puzzle folded, dew/CP/completion reset; no new penalty currency"
+  },
+  "rescueBand": {
+    "rect": {
+      "x": 116,
+      "y": 1500,
+      "width": 3608,
+      "height": 340
+    },
+    "status": "FUTURE_ADAPTER_NOT_EXISTING",
+    "reason": "outside authored reachable paths may fall to bedrock1680 and cannot jump back; do not claim existing catch floors alone exclude soft locks",
+    "action": "non-damaging deduplicated requestRespawn to recorded CP or spawn; preserve journey progress; clear motion/input, detach lift, camera reset",
+    "activation": "player foot y>=1500, only while PLAYING/EXPLORING; pause/completion locked; cooldown until respawn settles",
+    "greybox": "future P1 must include a visible developer rescue/reset adapter or clearly mark this case blocked; no automatic band currently implemented"
+  },
+  "stateLegend": {
+    "existing": "unchanged runtime systems only",
+    "designed": "this design candidate, pending producer approval",
+    "future": "all combat/damage/enemy/pad-bridge/thorn features",
+    "unverified": "integrated browser play, complete recovery/soft-lock exclusion, animation transitions, human timing"
+  }
+}

@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><link rel="icon" href="data:,"><meta name="viewport" content="width=device-width,initial-scale=1"><title>苔光之森 · 第一章 晨光林地</title></head>
+<body class="level-page"><main class="studio">
+  <header class="masthead"><div class="identity"><div><h1>苔光之森 <span>MORNING GLADE</span></h1><p>第一章 · 晨光林地 / 循着微光，唤醒一棵古树。</p></div></div><nav class="level-links"><a href="/">森林演示</a><a href="/animation-lab/">animation-lab</a></nav></header>
+  <section class="scene-frame" aria-label="第一关游戏场景"><div id="game" tabindex="0" role="application" aria-label="第一关，方向键移动，空格跳跃，E互动，J手记"></div><div id="loading" role="status">正在铺开晨光林地…</div>
+    
+    <nav class="level-tools" aria-label="关卡控制"><button id="map-toggle" aria-expanded="false" aria-controls="level-map">地图总览 M</button><button id="level-reset">重新探索 R</button></nav>
+    <div class="level-status" id="level-status" role="status"></div>
+    <aside id="level-map" aria-label="开发地图总览" hidden><header><div><strong>晨光林地 · 结构总览</strong><p>橙点：狐狸 · 白框：镜头 · 虚线地表：可从下方穿过的平台</p></div><button id="map-close">返回探索 Esc</button></header><div id="map-svg"></div><footer>金：主路　绿：树冠　蓝：地下　紫：隐藏根室　·　打开总览时暂停移动</footer></aside>
+  </section>
+  <footer class="colophon"><div>A / D 或 ← → 跑步 · Shift 走路 · Space / W / ↑ 跳跃 · E 互动 · J 手记</div><div>探索 · 聆听 · 让森林苏醒</div></footer>
+  <details class="level-dev"><summary>开发验收 · 碰撞边界与路线回放</summary><div class="dev-row"><button id="terrain-debug" aria-pressed="false">切换碰撞 / 路线线框</button><select id="test-route" aria-label="验收路线"><option value="main">主路线</option><option value="canopy">树冠路线</option><option value="lookout">树冠可选眺望台</option><option value="canopy-return">树冠中途回到主路</option><option value="west-return">西洞口原路返回（走路）</option><option value="hidden-return">隐藏根室折返起点</option><option value="cave">地下路线</option><option value="hidden">隐藏根室</option><option value="reverse-canopy">从终点沿树冠回头</option><option value="reverse-cave">终点经地下返回起点</option><option value="reverse-main">从终点沿主路回头</option></select><button id="test-start">从起点回放路线</button><button id="test-stop">停止回放 / 手动接管</button></div><p><label><input id="record-route" type="checkbox">录制此次路线回放</label> <span id="record-status"></span> <a id="record-download" hidden>下载路线录像 WebM</a></p><p>回放仅发送移动与跳跃按键，沿途不传送、不修改物理。反向测试以终点为初始位置。随时可停止接管。</p><p id="test-result">尚未运行路线回放</p><p id="physics-summary"></p><output id="level-telemetry" aria-label="关卡实时状态"></output></details>
+</main><script type="module" src="/src/levels/level01/main.ts"></script></body></html>

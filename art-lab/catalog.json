@@ -1,0 +1,134 @@
+[
+  {
+    "id": "grass-top",
+    "w": 256,
+    "h": 164,
+    "kind": "ground"
+  },
+  {
+    "id": "grass-left",
+    "w": 256,
+    "h": 208,
+    "kind": "ground"
+  },
+  {
+    "id": "grass-middle",
+    "w": 256,
+    "h": 208,
+    "kind": "ground"
+  },
+  {
+    "id": "grass-right",
+    "w": 256,
+    "h": 208,
+    "kind": "ground"
+  },
+  {
+    "id": "grass-slope",
+    "w": 256,
+    "h": 256,
+    "kind": "ground"
+  },
+  {
+    "id": "grass-transition",
+    "w": 256,
+    "h": 208,
+    "kind": "ground"
+  },
+  {
+    "id": "branch-short",
+    "w": 140,
+    "h": 156,
+    "kind": "branch"
+  },
+  {
+    "id": "branch-medium",
+    "w": 220,
+    "h": 156,
+    "kind": "branch"
+  },
+  {
+    "id": "branch-rest",
+    "w": 280,
+    "h": 164,
+    "kind": "branch"
+  },
+  {
+    "id": "branch-joint",
+    "w": 220,
+    "h": 184,
+    "kind": "branch"
+  },
+  {
+    "id": "branch-end",
+    "w": 140,
+    "h": 156,
+    "kind": "branch"
+  },
+  {
+    "id": "branch-left",
+    "w": 140,
+    "h": 156,
+    "kind": "branch"
+  },
+  {
+    "id": "cave-floor",
+    "w": 256,
+    "h": 224,
+    "kind": "rock"
+  },
+  {
+    "id": "cave-slope",
+    "w": 256,
+    "h": 272,
+    "kind": "rock"
+  },
+  {
+    "id": "cave-wall",
+    "w": 256,
+    "h": 288,
+    "kind": "rock"
+  },
+  {
+    "id": "cave-ceiling",
+    "w": 256,
+    "h": 164,
+    "kind": "rock"
+  },
+  {
+    "id": "rock-soil",
+    "w": 256,
+    "h": 224,
+    "kind": "ground"
+  },
+  {
+    "id": "soil-interior",
+    "w": 256,
+    "h": 128,
+    "kind": "ground"
+  },
+  {
+    "id": "roots",
+    "w": 160,
+    "h": 100,
+    "kind": "detail"
+  },
+  {
+    "id": "moss-mushrooms",
+    "w": 160,
+    "h": 100,
+    "kind": "detail"
+  },
+  {
+    "id": "branch-support",
+    "w": 160,
+    "h": 220,
+    "kind": "detail"
+  },
+  {
+    "id": "cave-backdrop",
+    "w": 512,
+    "h": 256,
+    "kind": "detail"
+  }
+]

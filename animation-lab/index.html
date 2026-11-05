@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e9eee3"><title>苔光之森 · 关键姿势与节奏工作台</title></head>
+<body>
+  <main class="lab-shell">
+    <header class="lab-header"><div><div class="eyebrow">MOSSLIGHT / CHARACTER STUDY 01</div><h1>小狐狸 · 关键姿势工作台</h1><p>关键姿势、动作节奏与柔性跟随，在同一套骨架上逐帧检查。</p></div><a class="return-game" href="/">返回森林 ↗</a></header>
+    <nav class="lab-toolbar" aria-label="姿势工作台控制">
+      <div class="view-buttons"><button id="overview" class="active">六姿势总览</button><button id="focus">单姿势检查</button><button id="cycle">完整跳跃循环</button><button id="ground">地面移动</button><button id="fusion">完整动作融合测试</button><button id="flex-ab">柔性动画 A/B 对比</button></div>
+      <label class="overview-only">版本<select id="pose-version" aria-label="总览姿态版本"><option value="refined">精修版本</option><option value="previous">历史基线（D 阶段前）</option></select></label>
+      <label>检查姿势<select id="pose-select" aria-label="检查姿势"></select></label>
+      <label class="check"><input id="show-bones" type="checkbox">骨骼 / 关节</label>
+      <label class="check detail-only" hidden><input id="compare" type="checkbox" checked>版本对照</label><label class="detail-only" hidden>对照来源<select id="comparison-source" aria-label="对照来源"><option value="primary" selected>仅主动作（关闭次级）</option><option value="previous">历史基线（D 阶段前）</option><option value="art">原始 SVG</option></select></label>
+      <label class="detail-only zoom-control" hidden>放大<input id="zoom" aria-label="姿势放大倍率" type="range" min="1.8" max="3" value="2.4" step="0.1"><output id="zoom-value">2.4×</output></label>
+    </nav>
+    <label class="flex-region">柔性观察区域<select id="flex-region" aria-label="柔性观察区域"><option value="whole">全身</option><option value="ears">耳朵放大</option><option value="tail">尾巴放大</option></select>（局部隔离观察；两侧共享主动作挂点。全身模式保留头部与衣服遮挡）</label>
+    <section class="neck-controls" aria-label="头颈精修调试">
+      <label><input id="head-neck" type="checkbox">仅显示头颈骨骼</label>
+      <label><input id="head-pivot" type="checkbox">头部旋转中心</label>
+      <label><input id="head-motion" type="checkbox" checked>头部惯性补偿</label>
+      <label>腰部弯曲<input id="waist-bend" aria-label="腰部弯曲幅度" type="range" min="0.65" max="1.2" step="0.05" value="1"><output id="waist-value">1.00×</output></label><label><input id="secondary" type="checkbox" checked>次级运动总开关</label><label><input id="ears" type="checkbox" checked>耳朵柔性</label><label><input id="tail" type="checkbox" checked>尾巴惯性</label>
+    </section>
+    <details class="flex-tuning"><summary>柔性强度、弹性、阻尼与安全限幅</summary><div id="flex-parameters"></div><p>左侧选“仅主动作”可与右侧同步比较；总开关只关闭惯性叠加，保留关键姿态。数值为弧度、刚度与阻尼比。</p></details>
+    <section id="timeline-panel" class="timeline-panel" aria-label="跳跃时间轴控制" hidden>
+      <button id="pause-cycle" type="button">暂停播放</button><button id="restart-cycle" type="button">重新播放</button><button id="before-contact" type="button">接地前</button><button id="impact-peak" type="button">冲击卸力</button>
+      <label>速度<select id="cycle-rate" aria-label="跳跃播放速度"><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option></select></label>
+      <label><input id="travel" type="checkbox" checked>前跃姿态</label>
+      <output id="cycle-phase">IDLE</output><output id="cycle-time">0.000 / 1.66 s</output>
+      <label class="timeline-track">时间轴<input id="jump-timeline" aria-label="跳跃时间轴" type="range" min="0" max="1.66" step="0.005" value="0"></label>
+      <p>0.20s 起步/待机 → 65–75ms 蓄力 → 100ms 蹬地 → 物理轨迹驱动腾空/下落 → 95ms 冲击 → 200ms 恢复。拖动即暂停。</p>
+    </section>
+    <section id="fusion-panel" class="timeline-panel" hidden>
+      <button id="fusion-pause">暂停</button><button id="fusion-restart">重新播放</button>
+      <label>融合播放速度<select id="fusion-rate" aria-label="融合播放速度"><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option></select></label>
+      <label class="timeline-track">融合时间轴<input id="fusion-time" aria-label="融合时间轴" type="range" min="0" max="14" step=".01" value="0"></label>
+      <output id="fusion-metrics"></output><details><summary>状态切换事件（最多保留96条）</summary><pre id="fusion-events"></pre></details>
+      <p>实验室模拟按键 → 与森林相同的运动、碰撞与动画控制器。待机→走→跑→制动→左转→左跑→跑跳→真实接地→恢复初段再次起跳→待机；两侧共享物理轨迹。融合模式左侧始终关闭次级运动。</p>
+    </section>
+    <section id="ground-panel" class="timeline-panel" hidden>
+      <label>动作<select id="ground-action" aria-label="地面动作"><option value="DEMO">验收演示</option><option>IDLE</option><option selected>WALK</option><option>RUN</option><option>START</option><option>STOP</option><option>TURN</option><option value="SPEED">连续速度</option></select></label>
+      <label>手动目标速度<input id="ground-speed" aria-label="地面移动速度" type="range" min="0" max="128" step="1" value="60"><output id="ground-speed-value">60 px/s</output></label>
+      <button id="ground-demo">验收演示 ↻</button><button id="ground-pause">暂停</button><button id="ground-restart">重播</button>
+      <label>播放<select id="ground-rate" aria-label="地面播放速度"><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option></select></label>
+      <label class="timeline-track">时间轴<input id="ground-time" aria-label="地面时间轴" type="range" min="0" max="6" step=".01" value="0"></label>
+      <output id="ground-metrics"></output>
+      <p>演示：待机2s → 右走3s → 右跑3s → 制动/左转 → 左跑3s → 待机；14s 循环；拖动速度滑块会切换到手动预览。Contact 触地 → Down 承重 → Passing 经过 → Up 蹬地；支撑脚世界坐标锁定。两版共享速度、距离、方向与时间，画面原地展示。</p>
+    </section>
+    <div class="work-area">
+      <section class="stage-area" aria-label="六个关键姿势预览">
+        <div id="lab-stage"><div id="loading" role="status">正在准备原始矢量素材…</div><div id="gallery-labels" class="gallery-labels"></div><div id="focus-labels" hidden><span id="comparison-label">历史基线（D 阶段前） <small>相同动作 / 相同比例</small></span><span id="focus-name">骨骼姿势</span></div></div>
+        <div class="stage-footer"><span><i></i> 共享骨架与素材 · 关键姿势 / 动作节奏</span><span id="stage-note">点击任一姿势，放大检查连接和轮廓</span></div>
+      </section>
+      <aside id="joint-inspector" hidden aria-label="关节坐标检查">
+        <div class="inspector-title"><span>JOINT INSPECTOR</span><h2 id="inspector-name">起跳蓄力</h2><p id="inspector-intent"></p></div>
+        <dl id="pose-metrics"></dl>
+        <div class="table-scroll"><table><thead><tr><th>关节</th><th>X</th><th>Y</th><th>角度</th></tr></thead><tbody id="joint-table"></tbody></table></div>
+        <p class="small-note">原稿坐标 / 局部角度。点击关节行，在画面中高亮；骨盆、腰、胸和颈独立控制。</p>
+      </aside>
+    </div>
+    <details class="rig-audit"><summary><span>骨骼检查记录</span><small>35 节点 / 连续躯干蒙皮 / 六个关键姿势 + 跳跃时间轴</small></summary><div class="audit-content"><div><h3>一条真正可弯曲的脊柱</h3><p>骨盆 → 腰部 → 胸腔 → 颈部 → 头部。衣服沿脊柱曲线连续弯曲，肩部与背包挂点贴合弯曲后的躯干。脚底目标与膝关节一起形成支撑，没有整体纵向压缩。</p><p>两侧肩、肘、腕及髋、膝、踝各自独立；每只耳朵三节，尾巴五节。脸部与背包保持刚性外形，四肢、耳朵与尾巴沿原图连续蒙皮。</p></div><div><h3>本轮的边界</h3><p>工作台和森林场景使用相同的精修动画控制器。跳跃预览采用确定的虚拟轨迹，可暂停、拖动并对比历史基线（D 阶段前）和蒙皮。游戏物理仍即时响应输入，不等待蓄力动画。</p><p>原侧面插画适合平面弯曲，无法表现真实前后转体；深度屈膝时，长外套会遮住部分大腿，可以打开骨骼确认膝盖和髋部。</p></div></div></details>
+    <footer class="lab-colophon">苔光之森 / 关键姿势与动作节奏精修 <span>POSE / TIMING / FOLLOW-THROUGH</span></footer>
+  </main>
+  <script type="module" src="/src/animation-lab/main.ts"></script>
+</body></html>

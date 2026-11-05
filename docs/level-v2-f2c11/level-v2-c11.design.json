@@ -1,0 +1,1680 @@
+{
+  "schema": "mosslight.level-design/1",
+  "status": "DESIGN_CANDIDATE_NOT_IMPLEMENTED",
+  "revision": "F.2-C1.1-candidate-1",
+  "units": "world pixels; foot coordinates; +y downward",
+  "id": "morning-glade-v2-c11-preview",
+  "title": "晨光林地V2 · 综合玩法终稿候选",
+  "width": 3840,
+  "height": 1840,
+  "spawn": {
+    "x": 160,
+    "y": 900
+  },
+  "finish": {
+    "x": 3630,
+    "y": 900
+  },
+  "regions": [
+    {
+      "id": "A",
+      "name": "森林入口",
+      "x": 0,
+      "y": 740,
+      "width": 700,
+      "height": 540,
+      "identity": "低矮林缘与有托底的第一跳",
+      "purpose": "学习40px缺口与安全恢复"
+    },
+    {
+      "id": "B",
+      "name": "古树岔口",
+      "x": 700,
+      "y": 840,
+      "width": 1400,
+      "height": 130,
+      "identity": "古树根部、引路花与CP1",
+      "purpose": "先见线索，再选择登高或入根洞"
+    },
+    {
+      "id": "C",
+      "name": "树冠庭院",
+      "x": 880,
+      "y": 200,
+      "width": 1590,
+      "height": 700,
+      "identity": "短苔阶、露珠高枝与林窗",
+      "purpose": "可选连续跳与两个不同返回位置"
+    },
+    {
+      "id": "D",
+      "name": "根系洞窟",
+      "x": 1180,
+      "y": 980,
+      "width": 1620,
+      "height": 510,
+      "identity": "根洞凹室、暖光和藤帘",
+      "purpose": "观察入口、走短回路、可选秘密"
+    },
+    {
+      "id": "E",
+      "name": "溪谷挑战",
+      "x": 2100,
+      "y": 800,
+      "width": 1340,
+      "height": 520,
+      "identity": "高低石台与下层恢复台",
+      "purpose": "CP2后两跳、宽落地与有预警荆棘"
+    },
+    {
+      "id": "F",
+      "name": "晨光门庭",
+      "x": 3440,
+      "y": 690,
+      "width": 400,
+      "height": 630,
+      "identity": "宽落地与门庭轮廓",
+      "purpose": "看见目标，停步按E结束，可继续探索"
+    }
+  ],
+  "modules": [
+    {
+      "id": "bedrock",
+      "x": 0,
+      "y": 1680,
+      "width": 3840,
+      "height": 160,
+      "area": "D",
+      "region": "D",
+      "type": "ground",
+      "kind": "ground",
+      "oneWay": false,
+      "collision": "solid",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 3840,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "rock"
+      }
+    },
+    {
+      "id": "entry",
+      "x": 0,
+      "y": 900,
+      "width": 400,
+      "height": 38,
+      "area": "A",
+      "region": "A",
+      "type": "ground",
+      "kind": "ground",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 400,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "entry-east",
+      "x": 430,
+      "y": 900,
+      "width": 270,
+      "height": 38,
+      "area": "A",
+      "region": "A",
+      "type": "ground",
+      "kind": "ground",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 270,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "entry-catch",
+      "x": 0,
+      "y": 1120,
+      "width": 700,
+      "height": 160,
+      "area": "A",
+      "region": "A",
+      "type": "ground",
+      "kind": "ground",
+      "oneWay": false,
+      "collision": "solid",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 700,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "earth"
+      }
+    },
+    {
+      "id": "entry-retry-low",
+      "x": 340,
+      "y": 1040,
+      "width": 180,
+      "height": 26,
+      "area": "A",
+      "region": "A",
+      "type": "platform",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 180,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "entry-retry-high",
+      "x": 440,
+      "y": 960,
+      "width": 180,
+      "height": 26,
+      "area": "A",
+      "region": "A",
+      "type": "platform",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 180,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "west-deck",
+      "x": 700,
+      "y": 900,
+      "width": 500,
+      "height": 38,
+      "area": "B",
+      "region": "B",
+      "type": "bridge",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 500,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "wood"
+      }
+    },
+    {
+      "id": "sunlit-bridge",
+      "x": 1230,
+      "y": 900,
+      "width": 270,
+      "height": 38,
+      "area": "B",
+      "region": "B",
+      "type": "bridge",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 270,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "wood"
+      }
+    },
+    {
+      "id": "return-bridge",
+      "x": 1500,
+      "y": 900,
+      "width": 600,
+      "height": 38,
+      "area": "B",
+      "region": "B",
+      "type": "bridge",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 600,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "wood"
+      }
+    },
+    {
+      "id": "crown-up-1",
+      "x": 900,
+      "y": 820,
+      "width": 180,
+      "height": 32,
+      "area": "C",
+      "region": "C",
+      "type": "step",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 180,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "crown-up-2",
+      "x": 1080,
+      "y": 740,
+      "width": 170,
+      "height": 32,
+      "area": "C",
+      "region": "C",
+      "type": "step",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 170,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "crown-up-3",
+      "x": 1250,
+      "y": 660,
+      "width": 160,
+      "height": 32,
+      "area": "C",
+      "region": "C",
+      "type": "step",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 160,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "crown-rest",
+      "x": 1410,
+      "y": 600,
+      "width": 260,
+      "height": 40,
+      "area": "C",
+      "region": "C",
+      "type": "platform",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 260,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "crown-secret-perch",
+      "x": 1490,
+      "y": 510,
+      "width": 180,
+      "height": 30,
+      "area": "C",
+      "region": "C",
+      "type": "platform",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 180,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "crown-lookout",
+      "x": 1700,
+      "y": 600,
+      "width": 300,
+      "height": 42,
+      "area": "C",
+      "region": "C",
+      "type": "platform",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 300,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "crown-window",
+      "x": 1630,
+      "y": 740,
+      "width": 140,
+      "height": 26,
+      "area": "C",
+      "region": "C",
+      "type": "platform",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 140,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "crown-down-1",
+      "x": 2000,
+      "y": 680,
+      "width": 160,
+      "height": 32,
+      "area": "C",
+      "region": "C",
+      "type": "step",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 160,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "crown-down-2",
+      "x": 2160,
+      "y": 760,
+      "width": 150,
+      "height": 32,
+      "area": "C",
+      "region": "C",
+      "type": "step",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 150,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "crown-down-3",
+      "x": 2310,
+      "y": 840,
+      "width": 140,
+      "height": 32,
+      "area": "C",
+      "region": "C",
+      "type": "step",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 140,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "cave-entry-1",
+      "x": 1190,
+      "y": 980,
+      "width": 140,
+      "height": 26,
+      "area": "D",
+      "region": "D",
+      "type": "step",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 140,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "rock"
+      }
+    },
+    {
+      "id": "cave-entry-2",
+      "x": 1320,
+      "y": 1060,
+      "width": 160,
+      "height": 26,
+      "area": "D",
+      "region": "D",
+      "type": "step",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 160,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "rock"
+      }
+    },
+    {
+      "id": "cave-landing",
+      "x": 1480,
+      "y": 1140,
+      "width": 280,
+      "height": 260,
+      "area": "D",
+      "region": "D",
+      "type": "cave",
+      "kind": "platform",
+      "oneWay": false,
+      "collision": "solid",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 160,
+          "y": 0
+        },
+        {
+          "x": 280,
+          "y": 60
+        }
+      ],
+      "art": {
+        "material": "rock"
+      }
+    },
+    {
+      "id": "secret-west",
+      "x": 1760,
+      "y": 1200,
+      "width": 120,
+      "height": 290,
+      "area": "D",
+      "region": "D",
+      "type": "ramp",
+      "kind": "platform",
+      "oneWay": false,
+      "collision": "solid",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 120,
+          "y": 110
+        }
+      ],
+      "art": {
+        "material": "rock"
+      }
+    },
+    {
+      "id": "secret-alcove",
+      "x": 1880,
+      "y": 1310,
+      "width": 200,
+      "height": 180,
+      "area": "D",
+      "region": "D",
+      "type": "cave",
+      "kind": "platform",
+      "oneWay": false,
+      "collision": "solid",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 200,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "rock"
+      }
+    },
+    {
+      "id": "secret-east",
+      "x": 2080,
+      "y": 1310,
+      "width": 120,
+      "height": 180,
+      "area": "D",
+      "region": "D",
+      "type": "ramp",
+      "kind": "platform",
+      "oneWay": false,
+      "collision": "solid",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 120,
+          "y": -110
+        }
+      ],
+      "art": {
+        "material": "rock"
+      }
+    },
+    {
+      "id": "cave-east",
+      "x": 2200,
+      "y": 1200,
+      "width": 160,
+      "height": 200,
+      "area": "D",
+      "region": "D",
+      "type": "cave",
+      "kind": "platform",
+      "oneWay": false,
+      "collision": "solid",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 160,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "rock"
+      }
+    },
+    {
+      "id": "cave-shortcut",
+      "x": 1760,
+      "y": 1200,
+      "width": 110,
+      "height": 24,
+      "area": "D",
+      "region": "D",
+      "type": "bridge",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 110,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "rock"
+      }
+    },
+    {
+      "id": "cave-shortcut-east",
+      "x": 1900,
+      "y": 1200,
+      "width": 300,
+      "height": 24,
+      "area": "D",
+      "region": "D",
+      "type": "bridge",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 300,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "rock"
+      },
+      "enabledWhen": {
+        "mechanism": "root-leaf-bridge",
+        "state": "OPEN"
+      }
+    },
+    {
+      "id": "cave-return-1",
+      "x": 2360,
+      "y": 1120,
+      "width": 140,
+      "height": 26,
+      "area": "D",
+      "region": "D",
+      "type": "step",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 140,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "rock"
+      }
+    },
+    {
+      "id": "cave-return-2",
+      "x": 2500,
+      "y": 1040,
+      "width": 140,
+      "height": 26,
+      "area": "D",
+      "region": "D",
+      "type": "step",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 140,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "rock"
+      }
+    },
+    {
+      "id": "cave-return-3",
+      "x": 2640,
+      "y": 960,
+      "width": 160,
+      "height": 26,
+      "area": "D",
+      "region": "D",
+      "type": "step",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 160,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "rock"
+      }
+    },
+    {
+      "id": "valley-west",
+      "x": 2100,
+      "y": 900,
+      "width": 300,
+      "height": 38,
+      "area": "E",
+      "region": "B",
+      "type": "ground",
+      "kind": "ground",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 300,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "valley-approach",
+      "x": 2400,
+      "y": 940,
+      "width": 220,
+      "height": 38,
+      "area": "E",
+      "region": "B",
+      "type": "ground",
+      "kind": "ground",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 220,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "valley-rest",
+      "x": 2620,
+      "y": 900,
+      "width": 200,
+      "height": 38,
+      "area": "E",
+      "region": "B",
+      "type": "ground",
+      "kind": "ground",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 200,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "valley-stone-1",
+      "x": 2850,
+      "y": 860,
+      "width": 180,
+      "height": 32,
+      "area": "E",
+      "region": "B",
+      "type": "platform",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 180,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "valley-stone-2",
+      "x": 3060,
+      "y": 900,
+      "width": 160,
+      "height": 32,
+      "area": "E",
+      "region": "B",
+      "type": "platform",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 160,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "valley-catch",
+      "x": 2780,
+      "y": 1120,
+      "width": 480,
+      "height": 200,
+      "area": "E",
+      "region": "B",
+      "type": "ground",
+      "kind": "ground",
+      "oneWay": false,
+      "collision": "solid",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 480,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "rock"
+      }
+    },
+    {
+      "id": "valley-retry-low",
+      "x": 2780,
+      "y": 1040,
+      "width": 140,
+      "height": 26,
+      "area": "E",
+      "region": "B",
+      "type": "platform",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 140,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "valley-retry-high",
+      "x": 2700,
+      "y": 960,
+      "width": 160,
+      "height": 26,
+      "area": "E",
+      "region": "B",
+      "type": "platform",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 160,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "valley-retry-east-1",
+      "x": 3120,
+      "y": 1040,
+      "width": 140,
+      "height": 26,
+      "area": "E",
+      "region": "B",
+      "type": "platform",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 140,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "valley-retry-east-2",
+      "x": 3160,
+      "y": 960,
+      "width": 180,
+      "height": 26,
+      "area": "E",
+      "region": "B",
+      "type": "platform",
+      "kind": "platform",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 180,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "gate-approach",
+      "x": 3220,
+      "y": 900,
+      "width": 220,
+      "height": 38,
+      "area": "E",
+      "region": "B",
+      "type": "ground",
+      "kind": "ground",
+      "oneWay": true,
+      "collision": "one-way",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 220,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    },
+    {
+      "id": "clearing",
+      "x": 3440,
+      "y": 900,
+      "width": 400,
+      "height": 420,
+      "area": "F",
+      "region": "E",
+      "type": "ground",
+      "kind": "ground",
+      "oneWay": false,
+      "collision": "solid",
+      "profile": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 400,
+          "y": 0
+        }
+      ],
+      "art": {
+        "material": "moss"
+      }
+    }
+  ],
+  "chains": {
+    "main": [
+      "entry",
+      "entry-east",
+      "west-deck",
+      "sunlit-bridge",
+      "return-bridge",
+      "valley-west",
+      "valley-approach",
+      "valley-rest",
+      "valley-stone-1",
+      "valley-stone-2",
+      "gate-approach",
+      "clearing"
+    ],
+    "canopy": [
+      "west-deck",
+      "crown-up-1",
+      "crown-up-2",
+      "crown-up-3",
+      "crown-rest",
+      "crown-lookout",
+      "crown-down-1",
+      "crown-down-2",
+      "crown-down-3",
+      "valley-approach"
+    ],
+    "canopyReward": [
+      "crown-rest",
+      "crown-secret-perch",
+      "crown-rest"
+    ],
+    "canopyEarly": [
+      "crown-rest",
+      "crown-window",
+      "return-bridge"
+    ],
+    "cave": [
+      "west-deck",
+      "cave-entry-1",
+      "cave-entry-2",
+      "cave-landing",
+      "cave-shortcut",
+      "cave-shortcut-east",
+      "cave-east",
+      "cave-return-1",
+      "cave-return-2",
+      "cave-return-3",
+      "valley-rest"
+    ],
+    "hidden": [
+      "cave-shortcut",
+      "secret-west",
+      "secret-alcove",
+      "secret-east",
+      "cave-east"
+    ],
+    "entryRecovery": [
+      "entry-catch",
+      "entry-retry-low",
+      "entry-retry-high",
+      "entry-east"
+    ],
+    "valleyRecoveryWest": [
+      "valley-catch",
+      "valley-retry-low",
+      "valley-retry-high",
+      "valley-rest"
+    ],
+    "valleyRecoveryEast": [
+      "valley-catch",
+      "valley-retry-east-1",
+      "valley-retry-east-2",
+      "gate-approach",
+      "clearing"
+    ],
+    "caveWestReturn": [
+      "cave-landing",
+      "cave-entry-2",
+      "cave-entry-1",
+      "west-deck"
+    ]
+  },
+  "connections": [
+    {
+      "id": "start",
+      "label": "入口",
+      "x": 160,
+      "y": 900,
+      "area": "A"
+    },
+    {
+      "id": "cp1",
+      "label": "CP1 / 古树栖息",
+      "x": 810,
+      "y": 900,
+      "area": "B"
+    },
+    {
+      "id": "crown-fork",
+      "label": "选择①：登高 / 地表",
+      "x": 900,
+      "y": 900,
+      "area": "B"
+    },
+    {
+      "id": "root-fork",
+      "label": "选择②：跳过 / 入洞",
+      "x": 1215,
+      "y": 900,
+      "area": "B"
+    },
+    {
+      "id": "court",
+      "label": "庭院",
+      "x": 1530,
+      "y": 600,
+      "area": "C"
+    },
+    {
+      "id": "dew1",
+      "label": "高枝露珠",
+      "x": 1580,
+      "y": 510,
+      "area": "C"
+    },
+    {
+      "id": "window",
+      "label": "林窗早返",
+      "x": 1700,
+      "y": 740,
+      "area": "C"
+    },
+    {
+      "id": "lift",
+      "label": "升降台再登高",
+      "x": 1928,
+      "y": 900,
+      "area": "B"
+    },
+    {
+      "id": "east-return",
+      "label": "树冠东返",
+      "x": 2240,
+      "y": 900,
+      "area": "E"
+    },
+    {
+      "id": "root-entry",
+      "label": "根洞落脚",
+      "x": 1560,
+      "y": 1140,
+      "area": "D"
+    },
+    {
+      "id": "root-choice",
+      "label": "选择③：短桥 / 秘密",
+      "x": 1885,
+      "y": 1200,
+      "area": "D"
+    },
+    {
+      "id": "dew2",
+      "label": "藤帘凹室",
+      "x": 1980,
+      "y": 1310,
+      "area": "D"
+    },
+    {
+      "id": "root-exit",
+      "label": "洞窟回环出口",
+      "x": 2700,
+      "y": 900,
+      "area": "E"
+    },
+    {
+      "id": "cp2",
+      "label": "CP2 / 溪谷栖息",
+      "x": 2730,
+      "y": 900,
+      "area": "E"
+    },
+    {
+      "id": "valley",
+      "label": "30px口+高40 / 低40",
+      "x": 2940,
+      "y": 860,
+      "area": "E"
+    },
+    {
+      "id": "goal",
+      "label": "晨光门庭 / E",
+      "x": 3630,
+      "y": 900,
+      "area": "F"
+    }
+  ],
+  "graphEdges": [
+    {
+      "from": "start",
+      "to": "cp1",
+      "label": "必经 / 第一跳"
+    },
+    {
+      "from": "cp1",
+      "to": "crown-fork",
+      "label": "步行"
+    },
+    {
+      "from": "crown-fork",
+      "to": "court",
+      "label": "可选 / 四级登高"
+    },
+    {
+      "from": "crown-fork",
+      "to": "root-fork",
+      "label": "地表"
+    },
+    {
+      "from": "court",
+      "to": "dew1",
+      "label": "可选 / 高90px"
+    },
+    {
+      "from": "dew1",
+      "to": "court",
+      "label": "向左回落"
+    },
+    {
+      "from": "court",
+      "to": "window",
+      "label": "可选 / 早返"
+    },
+    {
+      "from": "window",
+      "to": "lift",
+      "label": "地表汇合"
+    },
+    {
+      "from": "court",
+      "to": "east-return",
+      "label": "30px跳 + 东侧回落"
+    },
+    {
+      "from": "root-fork",
+      "to": "lift",
+      "label": "30px跨口"
+    },
+    {
+      "from": "root-fork",
+      "to": "root-entry",
+      "label": "主动落下 / 可逆"
+    },
+    {
+      "from": "root-entry",
+      "to": "root-choice",
+      "label": "洞内前进"
+    },
+    {
+      "from": "root-choice",
+      "to": "root-exit",
+      "label": "30px短桥 + 三级归途"
+    },
+    {
+      "from": "root-choice",
+      "to": "dew2",
+      "label": "落入凹室 / 可选E揭示"
+    },
+    {
+      "from": "dew2",
+      "to": "root-exit",
+      "label": "沿东根坡返回"
+    },
+    {
+      "from": "root-exit",
+      "to": "cp2",
+      "label": "必经汇合"
+    },
+    {
+      "from": "lift",
+      "to": "court",
+      "label": "可选升降台 / 双向"
+    },
+    {
+      "from": "lift",
+      "to": "east-return",
+      "label": "地表"
+    },
+    {
+      "from": "east-return",
+      "to": "cp2",
+      "label": "40px上台"
+    },
+    {
+      "from": "cp2",
+      "to": "valley",
+      "label": "30px缺口 + 高40px"
+    },
+    {
+      "from": "valley",
+      "to": "goal",
+      "label": "30px缺口下降 + 宽落地"
+    },
+    {
+      "from": "root-entry",
+      "to": "root-fork",
+      "label": "原路三级80px上返"
+    },
+    {
+      "from": "east-return",
+      "to": "court",
+      "label": "反向80px苔阶"
+    },
+    {
+      "from": "goal",
+      "to": "cp2",
+      "label": "继续探索 / 原路反向"
+    }
+  ],
+  "checkpoints": [
+    {
+      "checkpointId": "rest-forest-fork",
+      "area": "B",
+      "worldPosition": {
+        "x": 810,
+        "y": 900
+      },
+      "surfaceId": "west-deck",
+      "activationRange": 78,
+      "heightTolerance": 12,
+      "progressionOrder": 1,
+      "respawnPosition": {
+        "x": 850,
+        "y": 900
+      },
+      "visualResourceId": "mosslight-rest"
+    },
+    {
+      "checkpointId": "rest-morning-confluence",
+      "area": "E",
+      "worldPosition": {
+        "x": 2730,
+        "y": 900
+      },
+      "surfaceId": "valley-rest",
+      "activationRange": 78,
+      "heightTolerance": 12,
+      "progressionOrder": 2,
+      "respawnPosition": {
+        "x": 2770,
+        "y": 900
+      },
+      "visualResourceId": "mosslight-rest"
+    }
+  ],
+  "collectibles": [
+    {
+      "id": "dew-canopy-lookout",
+      "x": 1580,
+      "y": 468,
+      "moduleId": "crown-secret-perch",
+      "surfaceY": 510,
+      "landmark": "canopy-view"
+    },
+    {
+      "id": "dew-hidden-roots",
+      "x": 1980,
+      "y": 1268,
+      "moduleId": "secret-alcove",
+      "surfaceY": 1310,
+      "landmark": "root-memory"
+    }
+  ],
+  "interactions": [
+    {
+      "id": "forest-guide-flower",
+      "x": 832,
+      "y": 900,
+      "anchor": "west-deck",
+      "radius": 92,
+      "verticalRange": 48,
+      "action": "E揭示上方三块苔阶；不创建踩踏面、不限时通关"
+    },
+    {
+      "id": "ancient-root-curtain",
+      "x": 1870,
+      "y": 1300.8333333333333,
+      "anchor": "secret-west",
+      "radius": 108,
+      "verticalRange": 68,
+      "latch": true,
+      "topY": 1050,
+      "glow": {
+        "x": 1980,
+        "y": 1160
+      },
+      "action": "E舒展藤帘；保持纯视觉、可不按E通过"
+    }
+  ],
+  "movingPlatforms": [
+    {
+      "id": "mossleaf-lift",
+      "width": 156,
+      "height": 30,
+      "from": {
+        "x": 1850,
+        "y": 822
+      },
+      "to": {
+        "x": 1850,
+        "y": 680
+      },
+      "travelSeconds": 8,
+      "pauseSeconds": 1.2,
+      "safeFloor": "return-bridge",
+      "destination": "crown-lookout",
+      "role": "可选高低安全连接；静态路线始终可替代"
+    }
+  ],
+  "landmarks": [
+    {
+      "id": "canopy-view",
+      "x": 1580,
+      "y": 510,
+      "moduleId": "crown-secret-perch"
+    },
+    {
+      "id": "root-memory",
+      "x": 1980,
+      "y": 1310,
+      "moduleId": "secret-alcove"
+    }
+  ],
+  "guaranteesRequested": [
+    "0 dew completion",
+    "all branches optional",
+    "no new movement ability",
+    "no solid ceiling over lift",
+    "V1 remains default",
+    "separate V2 storage"
+  ],
+  "failurePolicy": {
+    "ordinaryFalls": "safe catch and self recovery via existing candidate chains",
+    "healthZero": "future damage adapter requests existing respawn API; preserve journey progress",
+    "outOfBounds": "future non-damaging foot-y>=1500 rescue request; NOT currently implemented",
+    "eastRecovery": "jump to gate-approach then walk to clearing; may bypass second jump as novice recovery"
+  },
+  "runtimeCompatibility": {
+    "regionMapping": "design areas A/B/C/D/E/F map to current terrain regions A/B/C/D/B/E; F is semantic only",
+    "notDropIn": [
+      "route schema/anchors require V2 adapter",
+      "hard-coded TerrainBuilder signs/gate/decor must be parameterized",
+      "V1 factories cannot consume V2 unchanged",
+      "save key must isolate map revision",
+      "scene visitation and area text use V1 coordinate thresholds",
+      "combat, damage, enemy AI, pressure bridge and thorn trigger are future systems",
+      "conditional surface omission requires safety/latch integration; no runtime implementation supplied"
+    ],
+    "physicsChange": false,
+    "artAssetChange": false
+  },
+  "areaMembership": {
+    "grounded": "support module.area is authoritative",
+    "airborne": "inherit last supported area until landing; volumes only hint",
+    "regionBoxes": "broad envelopes; overlapping allowed; not enemy/hazard authorisation",
+    "enemyAndHazard": "explicit support+interval/shape, never region alone"
+  },
+  "developmentModes": {
+    "earlyGreybox": "enemies/damage/trap disabled; bridge OPEN; all original routes testable",
+    "mechanismValidation": "bridge FOLDED/OPEN separately; lower root loop always open",
+    "integratedCandidate": "future systems enabled only when their dedicated gates pass"
+  }
+}

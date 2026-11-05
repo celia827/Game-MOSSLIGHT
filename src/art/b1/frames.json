@@ -1,0 +1,79 @@
+{
+  "sample-ground": {
+    "x": 0,
+    "y": 0,
+    "width": 400,
+    "height": 384,
+    "moduleId": "entry"
+  },
+  "sample-branch": {
+    "x": 400,
+    "y": 0,
+    "width": 280,
+    "height": 104,
+    "moduleId": "crown-rest"
+  },
+  "sample-cave": {
+    "x": 680,
+    "y": 0,
+    "width": 300,
+    "height": 264,
+    "moduleId": "cave-east"
+  },
+  "sample-branch-short": {
+    "x": 0,
+    "y": 704,
+    "width": 140,
+    "height": 96,
+    "moduleId": "crown-up-2"
+  },
+  "sample-branch-medium": {
+    "x": 144,
+    "y": 704,
+    "width": 220,
+    "height": 96,
+    "moduleId": "crown-up-3"
+  },
+  "cave-wall": {
+    "x": 0,
+    "y": 384,
+    "width": 256,
+    "height": 288,
+    "moduleId": ""
+  },
+  "cave-ceiling": {
+    "x": 256,
+    "y": 384,
+    "width": 256,
+    "height": 164,
+    "moduleId": ""
+  },
+  "roots": {
+    "x": 512,
+    "y": 384,
+    "width": 160,
+    "height": 100,
+    "moduleId": ""
+  },
+  "moss-mushrooms": {
+    "x": 672,
+    "y": 384,
+    "width": 160,
+    "height": 100,
+    "moduleId": ""
+  },
+  "branch-support": {
+    "x": 0,
+    "y": 800,
+    "width": 160,
+    "height": 220,
+    "moduleId": ""
+  },
+  "cave-backdrop": {
+    "x": 400,
+    "y": 704,
+    "width": 512,
+    "height": 256,
+    "moduleId": ""
+  }
+}

@@ -1,0 +1,22 @@
+async(page)=>{
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.route(/\/src\/levels\/level01\/main\.ts(?:\?.*)?$/,async route=>{const response=await route.fetch(),body=await response.text();await route.fulfill({response,body:body.replace('const game = new Phaser.Game(','const game = window.e2LifecycleGame = new Phaser.Game(')});});
+ await page.goto('http://127.0.0.1:5173/level01/');await page.locator('#loading').waitFor({state:'hidden'});await page.locator('#game').focus();await page.keyboard.press('r');
+ const result=await page.evaluate(async()=>{
+  const Game=window.e2LifecycleGame.constructor,renderType=window.e2LifecycleGame.renderer.type,{BootScene}=await import('/src/scenes/BootScene.ts'),{Level01Scene}=await import('/src/scenes/Level01Scene.ts');
+  const assert=(x,m)=>{if(!x)throw Error(m)},wait=async fn=>{for(let i=0;i<800;i++){if(fn())return;await new Promise(r=>setTimeout(r,10))}throw Error('Full scene lifecycle timeout')};
+  const stats=scene=>({textures:scene.textures.getTextureKeys().length,objects:scene.children.length,huds:document.querySelectorAll('.checkpoint-dev').length,feedback:document.querySelectorAll('[data-checkpoint-feedback]').length,announcers:document.querySelectorAll('#dewdrop-status').length,shutdownListeners:scene.events.listenerCount('shutdown'),destroyListeners:scene.events.listenerCount('destroy'),allListeners:Object.fromEntries(scene.events.eventNames().map(k=>[String(k),scene.events.listenerCount(k)]).sort((a,b)=>a[0].localeCompare(b[0])))});
+  const cycles=[],restarts=[];let game=window.e2LifecycleGame,scene;
+  for(let cycle=0;cycle<3;cycle++){
+   if(cycle){game=new Game({type:renderType,parent:'game',width:1280,height:720,scene:[new BootScene('Level01'),Level01Scene],banner:false,audio:{noAudio:true},input:{keyboard:false,mouse:false,touch:false,gamepad:false}});await wait(()=>game.scene.isActive('Level01')&&document.querySelectorAll('.checkpoint-dev').length===1);}
+   await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));scene=game.scene.getScene('Level01');const rig=scene.fox.rig,bones=scene.fox.animation.bones,first=stats(scene);
+   for(let i=0;i<20;i++){const previous=scene.checkpoints.respawn.lastResult?.requestId;document.querySelector('#test-respawn').click();await wait(()=>scene.checkpoints.respawn.lastResult?.requestId!==previous&&scene.checkpoints.respawn.lastResult?.ok);}
+   const after=stats(scene);assert(JSON.stringify(first)===JSON.stringify(after),'respawn accumulated resources/listeners');assert(scene.fox.rig===rig&&scene.fox.animation.bones===bones,'respawn rebuilt fox');
+   if(cycle===0)for(let n=0;n<3;n++){game.scene.stop('Level01');assert(document.querySelectorAll('.checkpoint-dev,[data-checkpoint-feedback],#dewdrop-status').length===0,'shutdown retained nodes');game.scene.start('Level01');await wait(()=>game.scene.isActive('Level01')&&document.querySelectorAll('.checkpoint-dev').length===1);await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));scene=game.scene.getScene('Level01');const s=stats(scene);assert(s.objects===first.objects&&s.textures===first.textures,'scene restart accumulated resources');assert(JSON.stringify(s.allListeners)===JSON.stringify(first.allListeners),'scene restart accumulated event listeners');assert(!scene.checkpoints.model.effective,'checkpoint persisted across fresh scene');restarts.push(s);}
+   const player=scene.fox.player,system=scene.checkpoints,keys=scene.abort,interaction=scene.interactions.input;game.destroy(true);await wait(()=>document.querySelectorAll('#game canvas').length===0);
+   assert(document.querySelectorAll('.checkpoint-dev,[data-checkpoint-feedback],#dewdrop-status,.adventure-ui').length===0,'full game destroy retained UI');assert(!document.body.dataset.checkpointState&&!document.body.dataset.collectibleState,'full game destroy retained telemetry');assert(player.input.abort.signal.aborted&&keys.signal.aborted&&interaction.abort.signal.aborted&&system.abort.signal.aborted,'full game destroy retained input listeners');assert(document.querySelector('#test-start').onclick===null,'full game destroy retained test handler');system.destroy();system.reset();
+   cycles.push({cycle:cycle+1,before:first,after20:after,canvas:0,nodes:0,telemetry:false,rigPreserved:true,inputAborted:true});
+  }
+  return{cycles,restarts};
+ });await page.unroute(/\/src\/levels\/level01\/main\.ts(?:\?.*)?$/);return{...result,errors};
+}
